@@ -40,21 +40,138 @@ function decrementQuantity() {
         quantityInput.value = currentQuantity - 1;
     }
 }
-function handleButtonClick(action) {
-    // Check if the user is logged in. This is a placeholder for your actual login check.
-    var isLoggedIn = localStorage.getItem('isLoggedIn'); // 'true' or 'false' as a string
+function checkLoginAndRedirect(action) {
+    // 여기서 사용자의 로그인 상태를 확인합니다.
+    var is_login = sessionStorage.getItem('is_login');
 
-    if (isLoggedIn === 'true') {
-        // User is logged in - perform action
+    // 사용자가 로그인 상태일 경우
+    if (is_login === 'true') {
+        // 예약하기 또는 배달하기 모달을 열어줍니다.
         if (action === 'reserve') {
-            // Redirect to reservation page or perform reservation action
-            console.log('Reserve action');
+            openModal('reserve');
         } else if (action === 'deliver') {
-            // Redirect to delivery page or perform delivery action
-            console.log('Deliver action');
+            openModal('deliver');
         }
     } else {
-        // User is not logged in - redirect to login page
+        // 로그인 상태가 아닐 때 로그인 페이지로 리다이렉트
+        alert('로그인이 필요한 서비스입니다.');
         window.location.href = 'login.html';
     }
+}
+
+function openModal(type) {
+
+    // 타입에 따라 모달 오픈
+    if (type === 'reserve') {
+        document.getElementById('reserveModal').style.display = 'block';
+    } else if (type === 'deliver') {
+        document.getElementById('deliveryModal').style.display = 'block';
+    }
+}
+
+function closeModal(type) {
+    // 타입에 따라 모달 클로즈
+    if (type === 'reserve') {
+        document.getElementById('reserveModal').style.display = 'none';
+    } else if (type === 'deliver') {
+        document.getElementById('deliveryModal').style.display = 'none';
+    }
+}
+
+function reserve() {
+    // 예약 관련 로직 처리
+    closeModal('reserve');
+    alert('예약이 완료되었습니다.');
+}
+
+function deliver() {
+    // 배달 관련 로직 처리
+    closeModal('deliver');
+    alert('배달 주문이 완료되었습니다.');
+}
+
+
+function sendReservation() {
+    const dateControl = document.getElementById('datetime');
+    const dateTimeValue = dateControl.value; // 'yyyy-mm-ddThh:mm' 형태의 값
+    var user_id = sessionStorage.getItem('user_id');
+    var quantityInput = document.getElementById('quantity');
+    // 날짜와 시간을 'yyyy-mm-dd hh:mm:ss' 형태로 변환
+    const formattedDateTime = formatDateTime(dateTimeValue);
+
+    // 예약 데이터 객체를 생성합니다.
+    const reservationData = {
+        'user_id': user_id, // 이 값은 세션 또는 로그인 상태에서 가져와야 합니다.
+        'product_id': 1, // 선택된 상품의 ID
+        'quantity': parseInt(quantityInput.value, 10), // 선택된 수량
+        'time': formattedDateTime
+    };
+    console.log(reservationData);
+    const url = `http://3.34.102.219/reserve.php`;
+    // 서버로 예약 정보를 전송합니다.
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(reservationData)
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (data.reservation !== false) {
+                alert('예약이 성공적으로 완료되었습니다.');
+                closeModal('reserve');
+            } else {
+                alert('예약에 실패했습니다. 다시 시도해주세요.');
+            }
+        })
+        .catch(error => {
+            console.error('예약 중 오류가 발생했습니다:', error);
+            alert('예약에 실패했습니다. 다시 시도해주세요.');
+        });
+}
+
+function formatDateTime(dateTimeValue) {
+    if (!dateTimeValue) return ''; // 값이 없으면 빈 문자열 반환
+    return dateTimeValue.replace('T', ' ') + ':00'; // 'yyyy-mm-ddThh:mm'을 'yyyy-mm-dd hh:mm:ss'로 변환
+}
+
+function sendDeliver() {
+    const dateControl = document.getElementById('datetime');
+    const dateTimeValue = dateControl.value; // 'yyyy-mm-ddThh:mm' 형태의 값
+    var user_id = sessionStorage.getItem('user_id');
+    var quantityInput = document.getElementById('quantity');
+    // 날짜와 시간을 'yyyy-mm-dd hh:mm:ss' 형태로 변환
+    const formattedDateTime = formatDateTime(dateTimeValue);
+
+    // 예약 데이터 객체를 생성합니다.
+    const reservationData = {
+        'user_id': user_id, // 이 값은 세션 또는 로그인 상태에서 가져와야 합니다.
+        'product_id': 1, // 선택된 상품의 ID
+        'quantity': parseInt(quantityInput.value, 10), // 선택된 수량
+        'time': formattedDateTime
+    };
+    console.log(reservationData);
+    const url = `http://3.34.102.219/deliver.php`;
+    // 서버로 예약 정보를 전송합니다.
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(reservationData)
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (data.reservation !== false) {
+                alert('예약이 성공적으로 완료되었습니다.');
+                closeModal('reserve');
+            } else {
+                alert('예약에 실패했습니다. 다시 시도해주세요.');
+            }
+        })
+        .catch(error => {
+            console.error('예약 중 오류가 발생했습니다:', error);
+            alert('예약에 실패했습니다. 다시 시도해주세요.');
+        });
 }

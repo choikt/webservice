@@ -10,102 +10,39 @@
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&display=swap" rel="stylesheet">
     <script type="text/javascript" src="./adreserve.js"></script>
+    <script type="text/javascript" src="./logout.js"></script>
+    <script type="text/javascript" src="./adlogin.js"></script>
 
 </head>
 
-<script>
-    const list = document.createDocumentFragment();
-
-        async function getReserve() {
-            const url = `http://localhost:8888/orders.php/selectManagerReservation`;
-            const options = {
-              method: "GET",
-              headers: {
-                "Content-Type": "application/json",
-              },
-            };
-            const res = await fetch(url, options);
-            const data = await res.json();
-            if (res.ok) {
-                return data;
-            } else {
-                throw Error(data);
-            }   
-        }
-
-        async function renderReserve() {
-            let reservelist = await getReserve();
-
-            let html = '';
-            for(let i = 0; i < reservelist.reservationList.length; i++) {
-                let reserve = reservelist.reservationList[i];
-
-                let htmlSegment
-                if(reserve.status == 'F') {
-                    htmlSegment =
-                `<div>
-                    <div class="num">
-                        <i class="fa-solid fa-caret-right"></i> 
-                        <strong style = "text-decoration:line-through; text-decoration-color:orange">예약번호:  ${reserve.Order_id}</strong>
-                        <br/><br/>
-                        <a1 style = "text-decoration:line-through; text-decoration-color:orange">${reserve.Order_datetime}</a1>
-                        <br/>
-                    </div>
-                    <div class="order" style = "text-decoration:line-through; text-decoration-color:orange"> ${reserve.Product_name} ${reserve.Order_many}</div>
-                    <div class="cost">결제금액 : ${reserve.Price}</div>
-                </div>`;
-            }
-            else {
-                htmlSegment =
-                `<div  onclick= "onClick(${reserve.Order_id})">
-                    <div class="num">
-                        <i class="fa-solid fa-caret-right"></i> <strong>예약번호:  ${reserve.Order_id}</strong>
-                        <br/><br/>
-                        <a1>${reserve.Order_datetime}</a1>
-                        <br/>
-                    </div>
-                    <div class="order"> ${reserve.Product_name} ${reserve.Order_many}</div>
-                    <div class="cost">결제금액 : ${reserve.Price}</div>
-                </div>`;
-            }
-        
-                html += htmlSegment;
-            };
-            let container = document.querySelector('.board_list');
-            container.innerHTML = html;
-        }
-</script>
-
 <body>
-    <div class="wrap">
-        <div class="intro_bg">
-            <div class="header">
-                <ul class="nav">
-                    <li><a href="#" onclick="location.href='login.html'">로그인</a></li>
-                    <li><a href="#" onclick="Confirm()"> 로그아웃</a></li>
-                    <li><a href="#" onclick="location.href='signin.html'">회원가입</a></li>
-                    <li><a1 href="#"onclick="location.href='adlogin.html'">관리자전용</a1></li>
-                </ul>
-            </div>
-            <div class="intro_name">
-                <a href="#" onclick="location.href='main.html'"><center>자연수</center></a>
-            </div>
-            <div class="intro_png">
-                <img src="./images/rainbow.png" alt="" width="100%">
-            </div>
-        </div>
-        
-        <div class="menu_bar">
-            
-            <div class="menu_bar_inside">
-                <a href="#" onclick="location.href='togo.html'">오시는길</a>
-                <a href="#" onclick="location.href='side.html'">반찬</a>
-                <a href="#" onclick="location.href='adreserve.html'">예약조회</a>
-                <a href="#" onclick="location.href='deliver.html'">배달조회</a>
+<div class="wrap">
 
-
-            </div>
+    <div class="intro_bg">
+        <div class="header">
+            <ul class="nav">
+                <li><a href="#" onclick="location.href='login.html'">로그인</a></li>
+                <li><a href="#" onclick="logout()">로그아웃</a></li>
+                <li><a href="#" onclick="location.href='signin.html'">회원가입</a></li>
+            </ul>
         </div>
+        <div class="intro_name">
+            <a href="#" onclick="location.href='main.html'"><center>자연수</center></a>
+        </div>
+
+    </div>
+
+    <div class="menu_bar">
+        <div class="menu_bar_inside">
+            <a href="#" onclick="location.href='togo.html'">오시는길</a>
+            <a href="#" onclick="location.href='main.html'">반찬</a>
+            <a href="#" onclick="location.href='reserve.html'">예약조회</a>
+            <a href="#" onclick="location.href='deliver.html'">배달조회</a>
+
+        </div>
+    </div>
+</div>
+    <div class="menu_bar_bottom_line"></div>
         <div class="rc_bar">
             <h3>관리자 예약조회</h3>
             <a>주문 예약 조회</a>

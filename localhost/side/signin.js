@@ -7,7 +7,7 @@ async function signin() {
 
      const url = `http://3.34.102.219/user.php`;
 
-     var details = {
+     const details = {
           'user_id': id.value,
           'passwd': pass.value,
           'phone_number': phone.value,
