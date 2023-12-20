@@ -140,7 +140,7 @@ body, html {
     margin-left: 20px;
     color: red;
 }
-.reservation-list {
+.delivery-list {
     width: 80%;
     margin: 20px auto;
     padding: 15px;
@@ -149,12 +149,12 @@ body, html {
     background-color: #f9f9f9;
 }
 
-.reservation-item {
+.delivery-item {
     padding: 10px;
     margin-bottom: 10px;
     border-bottom: 1px solid #eee;
 }
 
-.reservation-item:last-child {
+.delivery:last-child {
     border-bottom: none;
 }

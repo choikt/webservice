@@ -1,44 +1,49 @@
 document.addEventListener('DOMContentLoaded', function() {
+    console.log("dfsdf");
     const userId = sessionStorage.getItem('user_id'); // 세션에서 user_id 가져오기
     const authority = sessionStorage.getItem('authority'); // 세션에서 authority 가져오기
 
     if (authority === 'user') {
-        fetchReservations(userId);
+        fetchDeliver(userId);
     } else if(authority === 'admin'){
-        fetchReservations_admin();
+        fetchDelivers_admin();
     }
 });
 
-async function fetchReservations(userId) {
+async function fetchDeliver(userId) {
     try {
+        console.log("dfasdfa");
         const response = await fetch(`http://3.34.102.219/deliver.php?user_id=${userId}`);
-        const reservations = await response.json();
-        displayReservations(reservations);
+        const delivery = await response.json();
+        console.log(delivery);
+        displaydelivery(delivery);
     } catch (error) {
         console.error('배송 정보를 불러오는 데 실패했습니다:', error);
     }
 }
-async function fetchReservations_admin() {
+async function fetchDelivers_admin() {
     try {
+        console.log("ddddddddd");
         const response = await fetch(`http://3.34.102.219/deliver.php`);
-        const reservations = await response.json();
-        displayReservations(reservations);
+        const delivery = await response.json();
+        console.log(delivery);
+        displaydelivery(delivery);
     } catch (error) {
         console.error('배송 정보를 불러오는 데 실패했습니다:', error);
     }
 }
-function displayReservations(reservations) {
-    const listElement = document.getElementById('reservationList');
+function displaydelivery(delivery) {
+    const listElement = document.getElementById('deliveryList');
     listElement.innerHTML = ''; // 목록 초기화
 
-    reservations.forEach(reservation => {
+    delivery.forEach(delivery => {
         const itemElement = document.createElement('div');
-        itemElement.className = 'reservation-item';
+        itemElement.className = 'delivery-item';
         itemElement.innerHTML = `
-            <h3>${reservation.product_name}</h3>
-            <p>수량: ${reservation.quantity}</p>
-            <p>가격: ${reservation.price}원</p>
-            <p>예약 시간: ${reservation.time}</p>
+            <h3>${delivery.product_name}</h3>
+            <p>수량: ${delivery.quantity}</p>
+            <p>가격: ${delivery.price}원</p>
+            <p>주소: ${delivery.address}</p>
         `;
         listElement.appendChild(itemElement);
     });

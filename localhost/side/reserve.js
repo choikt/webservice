@@ -137,41 +137,41 @@ function formatDateTime(dateTimeValue) {
 }
 
 function sendDeliver() {
-    const dateControl = document.getElementById('datetime');
-    const dateTimeValue = dateControl.value; // 'yyyy-mm-ddThh:mm' 형태의 값
-    var user_id = sessionStorage.getItem('user_id');
+    var userId = sessionStorage.getItem('user_id');
+    var productId = 1; // 예시로 4를 사용한 상품 ID
     var quantityInput = document.getElementById('quantity');
-    // 날짜와 시간을 'yyyy-mm-dd hh:mm:ss' 형태로 변환
-    const formattedDateTime = formatDateTime(dateTimeValue);
+    var addressInput = document.getElementById('address');
 
-    // 예약 데이터 객체를 생성합니다.
-    const reservationData = {
-        'user_id': user_id, // 이 값은 세션 또는 로그인 상태에서 가져와야 합니다.
-        'product_id': 1, // 선택된 상품의 ID
-        'quantity': parseInt(quantityInput.value, 10), // 선택된 수량
-        'time': formattedDateTime
+    // 배달 데이터 객체 생성
+    const deliverData = {
+        'user_id': userId,
+        'product_id': productId,
+        'quantity': parseInt(quantityInput.value, 10),
+        'address': addressInput.value
     };
-    console.log(reservationData);
+
+    console.log(deliverData);
     const url = `http://3.34.102.219/deliver.php`;
-    // 서버로 예약 정보를 전송합니다.
+
+    // 서버로 배달 정보 전송
     fetch(url, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(reservationData)
+        body: JSON.stringify(deliverData)
     })
         .then(response => response.json())
         .then(data => {
-            if (data.reservation !== false) {
-                alert('예약이 성공적으로 완료되었습니다.');
-                closeModal('reserve');
+            if (data.delivery !== false) {
+                alert('배달 주문이 성공적으로 완료되었습니다.');
+                closeModal('deliver');
             } else {
-                alert('예약에 실패했습니다. 다시 시도해주세요.');
+                alert('배달 주문에 실패했습니다. 다시 시도해주세요.');
             }
         })
         .catch(error => {
-            console.error('예약 중 오류가 발생했습니다:', error);
-            alert('예약에 실패했습니다. 다시 시도해주세요.');
+            console.error('배달 주문 중 오류가 발생했습니다:', error);
+            alert('배달 주문에 실패했습니다. 다시 시도해주세요.');
         });
 }
