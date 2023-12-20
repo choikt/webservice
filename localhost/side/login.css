@@ -16,16 +16,13 @@ body, html {
     margin: 0px;
     padding: 0px;
     color: black;
-    font-family: 'Nanum Gothic Coding', monospace;
     background-color: white; /* 기본 배경색을 하얀색으로 변경 */
 }
-
 
 .intro_bg{
     width:100%;
     height:130px;
     position: static;
-    background-color: white; /* 기본 배경색을 하얀색으로 변경 */
 }
 
 
@@ -36,7 +33,7 @@ body, html {
 
 .intro_name a center{
     font-size: 70px;
-    font-family: 'Noto Sans KR', sans-serif; /* 변경된 폰트 적용 */
+    font-family: 'Noto Serif KR', sans-serif; /* 변경된 폰트 적용 */
 }
 
 .intro_png{
@@ -46,8 +43,8 @@ body, html {
 
 .header{
     display: flex;
-    justify-content: flex-end; /* 내용을 오른쪽으로 정렬합니다. */
     width: 100%;
+    justify-content: flex-end; /* 내용을 오른쪽으로 정렬합니다. */
     margin: auto;
     background: white; /* 배경색 변경 */
     font-size: 13px;
@@ -56,12 +53,14 @@ body, html {
 .nav{
     display: flex;
     height: 14px;
-    margin-left: auto;
+    margin-left: auto; /* 나머지 공간을 왼쪽으로 정렬합니다. */
+
 }
 
 .nav li{
-    margin-left: 20px;
     padding-top: 10px;
+
+    margin-left: 20px;
 }
 
 .nav li a1{
@@ -73,32 +72,38 @@ body, html {
     max-width: 100%;
     height: 33px;
     position: relative;
-    /* display: inline-block; */
-    background-color: white; /* 기본 배경색을 하얀색으로 변경 */
-    padding-bottom: 8%;
-    overflow: hidden;
+    background-color:white /* 배경색 변경 */
+;
 }
 
 .menu_bar_inside a{
     font-size: 25px;
-    font-family: 'Noto Sans KR', sans-serif; /* 변경된 폰트 적용 */
+    font-family: 'Noto Serif KR', sans-serif; /* 변경된 폰트 적용 */
     margin-left: 65px;
     margin-right: 125px;
     display: inline-block;
     background-color: transparent;
 }
 
-
+.menu_bar_inside a1{
+    font-size: 25px;
+    font-family: 'Noto Sans KR', sans-serif; /* 변경된 폰트 적용 */
+    margin-left: 65px;
+    margin-right: 125px;
+    display: inline-block;
+    background-color: transparent;
+    color: gray;
+    cursor: pointer;
+}
 
 .menu_bar_inside{
     transform: translate(10%, 10%);
 }
 
-.menu_bar .menu_bar_inside a:hover{
+.menu_bar .menu_bar_inside a:hover, .menu_bar .menu_bar_inside a1:hover{
     transform: scale(1.3);
-    color:white;
+    color: rgb(128, 128, 128);
 }
-
 
 .menu_bar_bottom_line {
     height: 1.5px; /* 선의 두께 설정 */
@@ -107,173 +112,33 @@ body, html {
     margin-top: 25px;
 }
 
-.container{
-    position: relative;
-    width: 100%;
-    background-color: white; /* 기본 배경색을 하얀색으로 변경 */
-}
-
-
-form{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.title{
-    font-size: 50px;
-    color: #444;
-    margin-bottom: 10px;
-    font-family: 'Noto Sans KR', sans-serif; /* 변경된 폰트 적용 */
-}
-
-/*.login-field{*/
-/*    max-width: 380px;*/
-/*    width: 100%;*/
-/*    height:55px;*/
-/*    background-color: rgb(222, 222, 219);*/
-/*    margin: 10px 0;*/
-/*    border-radius: 10px;*/
-/*    display: grid;*/
-/*    grid-template-columns: 15% 85%;*/
-
-/*}*/
-
-/*.login-field i{*/
-/*    text-align: center;*/
-/*    line-height: 55px;*/
-/*    background-color: rgb(222, 222, 219);*/
-/*    border-radius: 10px;*/
-/*    color: rgb(85, 85, 80);*/
-/*    font-size: 1.5rem;*/
-/*}*/
-
-/*.login-field input{*/
-/*    background: none;*/
-/*    outline: none;*/
-/*    border: none;*/
-/*    list-style: none;*/
-/*    line-height: 1;*/
-/*    font-weight: 600;*/
-/*    font-size: 1.1rem;*/
-/*    font-family: 'Noto Sans KR', sans-serif; !* 변경된 폰트 적용 *!*/
-/*}*/
-
-.button :hover {
-    color: black;
-}
-
-.btn{
-    width: 100px;
-    height: 40px;
-    outline: none;
-    border: none;
-    border-radius: 10px;
-    background-color: white;
-    color: white;
-    font-size: 20px;
-    text-transform: uppercase;
-    margin: 10px 0;
-    transition: all 0.5s;
-    font-family: 'Noto Sans KR', sans-serif; /* 변경된 폰트 적용 */
-    cursor: pointer;
-}
-
-.findpass :hover, .notmember a:hover{
-    color: blue;
-}
-
-
- .findpass a{
-    text-decoration : underline;
-    font-family: 'Noto Sans KR', sans-serif; /* 변경된 폰트 적용 */
-    float: right;
-    margin-right: 48%;
- }
-
- .findpass a :hover{
-    transform: scale(1.2);
-    background-color: transparent;
- }
-
-
- .notmember{
-    margin-left: 70%;
-    margin-top: 4%;
- }
- .notmember a1{
-    font-family: 'Noto Sans KR', sans-serif; /* 변경된 폰트 적용 */
-    margin-right: 10px;
- }
-
- .notmember a{
-    font-family: 'Noto Sans KR', sans-serif; /* 변경된 폰트 적용 */
-    text-decoration: underline;
- }
-
-
 .loginpage {
     background: #ffffff;
     padding: 40px;
     border-radius: 10px;
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-    width: 350px;
-    /* 가로 중앙 정렬 */
-    margin-left: auto;
-    margin-right: auto;
-    /* 세로 중앙 정렬을 위한 스타일 (필요한 경우에만) */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    width: 400px;
+    margin: 40px auto;
 }
 
-/* 화면 전체를 감싸는 body에 적용된 flex 스타일을 제거할 경우 */
-body {
-    font-family: '나눔고딕', sans-serif;
-    margin: 0;
-    padding: 0;
-    background: #f4f4f4;
-    /* 아래의 세 가지 스타일을 제거하거나 주석 처리 */
-    /* display: flex;
-    justify-content: center;
-    align-items: center; */
-    height: 100vh;
-}
-
-/* 로그인 폼 제목 */
 .login .title {
     color: #333;
     font-size: 24px;
-    text-align: center;
-    margin-bottom: 30px;
-}
-
-/* 로그인 필드 스타일 */
-.login-field {
-    position: relative;
     margin-bottom: 20px;
 }
 
-/* 아이콘 스타일 */
 .login-field i {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    color: white;
+    color: #007bff;
 }
 
-/* 입력 필드 스타일 */
 .login-field input {
-    width: 100%;
-    padding: 10px 10px 10px 40px;
+    width: 90%;
+    padding: 10px 40px 10px 10px;
     font-size: 16px;
     border: 1px solid #ddd;
     border-radius: 5px;
 }
 
-/* 로그인 버튼 스타일 */
 .button .btn {
     width: 100%;
     padding: 10px;
@@ -283,35 +148,18 @@ body {
     font-size: 18px;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s;
 }
 
 .button .btn:hover {
     background-color: #0056b3;
 }
 
-/* "비밀번호 찾기" 링크 스타일 */
-.findpass a {
-    display: block;
+.notmember, .findpass {
     text-align: center;
     margin-top: 20px;
+}
+
+.notmember a, .findpass a {
     color: #007bff;
     text-decoration: none;
-}
-
-/* "회원가입" 섹션 스타일 */
-.notmember {
-    text-align: center;
-    margin-top: 10px;
-}
-
-.notmember a1 {
-    color: #333;
-    font-size: 16px;
-}
-
-.notmember a {
-    color: #007bff;
-    text-decoration: none;
-    font-weight: bold;
 }

@@ -24,7 +24,9 @@ async function login(user_id, passwd) {
         sessionStorage.setItem("user_id", data.user_id);
         sessionStorage.setItem("phone_number", data.phone_number);
         sessionStorage.setItem("authority", data.authority);
-
+        if (data.authority === 'admin') {
+            alert("관리자님 환영합니다.");
+        }
         location.href="./main.html";
     } else{
         alert("로그인에 실패하였습니다.\n 아이디 또는 비밀번호를 확인해주세요.");
@@ -39,8 +41,4 @@ function check(){
         alert("아이디, 비밀번호를 확인해주세요. ");
     }
     else login(id, userpassword)
-}
-
-function Confirm(){
-    window.confirm("로그아웃을 하시겠습니까?");
 }

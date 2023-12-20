@@ -13,7 +13,7 @@
     <script type="text/javascript" src="./screen.js?ver=1"></script>
     <script type="text/javascript" src="./reserve.js"></script>
     <script type="text/javascript" src="./logout.js"></script>
-    <script type="text/javascript" src="./adlogin.js"></script>
+
 
 </head>
 
@@ -38,7 +38,7 @@
         <div class="menu_bar_inside">
             <a href="#" onclick="location.href='togo.html'">오시는길</a>
             <a href="#" onclick="location.href='main.html'">반찬</a>
-            <a href="#" onclick="location.href='reserve.html'">예약조회</a>
+            <a href="#" onclick="location.href='ckreserve.html'">예약조회</a>
             <a href="#" onclick="location.href='deliver.html'">배달조회</a>
 
         </div>
@@ -53,6 +53,7 @@
             </div>
             <div class="product-info">
                 <h2 id="productName">상품 이름</h2>
+                <div id="productInfo"></div>
                 <p id="productDescription">상품 설명</p>
                 <p id="productPrice">가격</p>
                 <div class="quantity-selector">
@@ -60,14 +61,18 @@
                     <button type="button" class="quantity-btn" onclick="decrementQuantity()">-</button>
                     <input type="number" id="quantity" name="quantity" value="1" min="1">
                     <button type="button" class="quantity-btn" onclick="incrementQuantity()">+</button>
+                    <p id="totalPrice">총 금액: 0원</p>
                 </div>
+
                 <div class="buttons">
                     <button type="button" id="reserveButton" onclick="checkLoginAndRedirect('reserve')">예약하기</button>
                     <button type="button" id="deliveryButton" onclick="checkLoginAndRedirect('deliver')">배달하기</button>
                 </div>
             </div>
         </div>
-        <div id="reserveModal" class="modal">
+    <input type="hidden" id="currentProductId" value="">
+
+    <div id="reserveModal" class="modal">
             <div class="modal-content">
                 <span class="close" onclick="closeModal('reserve')">&times;</span>
                 <h2>예약 시간 선택</h2>

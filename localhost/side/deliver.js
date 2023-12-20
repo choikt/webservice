@@ -41,9 +41,10 @@ function displaydelivery(delivery) {
         itemElement.className = 'delivery-item';
         itemElement.innerHTML = `
             <h3>${delivery.product_name}</h3>
+            <p>예약자: ${delivery.name}</p>
             <p>수량: ${delivery.quantity}</p>
             <p>가격: ${delivery.price}원</p>
-            <p>주소: ${delivery.address}</p>
+            <p>예약 시간: ${delivery.time}</p>
         `;
         listElement.appendChild(itemElement);
     });

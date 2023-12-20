@@ -20,7 +20,6 @@ async function fetchReservations(userId) {
 }
 async function fetchReservations_admin() {
     try {
-        console.log("여기");
         const response = await fetch(`http://3.34.102.219/reserve.php`);
         const reservations = await response.json();
         displayReservations(reservations);
@@ -28,6 +27,7 @@ async function fetchReservations_admin() {
         console.error('예약 정보를 불러오는 데 실패했습니다:', error);
     }
 }
+
 function displayReservations(reservations) {
     const listElement = document.getElementById('reservationList');
     listElement.innerHTML = ''; // 목록 초기화
@@ -37,6 +37,7 @@ function displayReservations(reservations) {
         itemElement.className = 'reservation-item';
         itemElement.innerHTML = `
             <h3>${reservation.product_name}</h3>
+            <p>예약자: ${reservation.name}</p>
             <p>수량: ${reservation.quantity}</p>
             <p>가격: ${reservation.price}원</p>
             <p>예약 시간: ${reservation.time}</p>

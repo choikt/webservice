@@ -1,36 +1,52 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // URL에서 productId 추출
     const urlParams = new URLSearchParams(window.location.search);
     const productId = urlParams.get('productId');
 
-    // productId를 사용하여 상품 정보 로드
-    // 예시로는 단순히 하드코딩된 정보를 사용
-    // 실제로는 서버나 데이터베이스에서 정보를 가져와야 함
-    const productInfo = {
-        1: {
-            name: "두부 무침",
-            description: "맛있는 두부 요리",
-            price: "10,000원",
-            imageUrl: "./images/menu_dubu.jpg"
-        }
-        // 나머지 상품 정보 추가
-    };
-
-    const product = productInfo[productId];
-    if (product) {
-        document.getElementById('productImage').src = product.imageUrl;
-        document.getElementById('productName').textContent = product.name;
-        document.getElementById('productDescription').textContent = product.description;
-        document.getElementById('productPrice').textContent = product.price;
+    if (productId) {
+        document.getElementById('currentProductId').value = productId; // productId 저장
+        fetchProductData(productId);
+    } else {
+        console.error('상품 ID가 URL에 없습니다.');
     }
-
-    // 예약 폼 처리 로직 추가
 });
+
+async function fetchProductData(productId) {
+    try {
+        const response = await fetch(`http://3.34.102.219/product.php?id=${productId}`);
+        const product = await response.json();
+        displayProductData(product);
+    } catch (error) {
+        console.error('상품 정보를 불러오는 데 실패했습니다:', error);
+    }
+}
+
+function displayProductData(product) {
+    if (!product) return;
+
+    document.getElementById('productImage').src = `./images/${product.product_id}.jpg`; // 예시 이미지 경로
+    document.getElementById('productName').textContent = product.product_name;
+    const productGram = document.createElement('p');
+    productGram.textContent = `${product.gram}g`;
+    productGram.style.fontSize = 'small'; // 작은 글씨 크기 설정
+    const productInfoDiv = document.getElementById('productInfo');
+    productInfoDiv.appendChild(productGram); // 제품 이름 바로 아래에 그램 정보 추가
+    document.getElementById('productDescription').textContent = product.product_info;
+    document.getElementById('productPrice').textContent = `가격: ${product.price}원`;
+
+    updateTotalPrice(product.price); // 초기 총 금액 설정
+}
+
+function updateTotalPrice(pricePerUnit) {
+    const quantity = parseInt(document.getElementById('quantity').value, 10);
+    const totalPrice = quantity * pricePerUnit;
+    document.getElementById('totalPrice').textContent = `총 금액: ${totalPrice}원`;
+}
 
 function incrementQuantity() {
     var quantityInput = document.getElementById('quantity');
     var currentQuantity = parseInt(quantityInput.value, 10);
     quantityInput.value = currentQuantity + 1;
+    updateTotalPrice(parseInt(document.getElementById('productPrice').textContent.replace(/[^0-9]/g, ''), 10));
 }
 
 function decrementQuantity() {
@@ -39,6 +55,7 @@ function decrementQuantity() {
     if (currentQuantity > 1) { // Prevents the quantity from going below 1
         quantityInput.value = currentQuantity - 1;
     }
+    updateTotalPrice(parseInt(document.getElementById('productPrice').textContent.replace(/[^0-9]/g, ''), 10));
 }
 function checkLoginAndRedirect(action) {
     // 여기서 사용자의 로그인 상태를 확인합니다.
@@ -98,11 +115,13 @@ function sendReservation() {
     var quantityInput = document.getElementById('quantity');
     // 날짜와 시간을 'yyyy-mm-dd hh:mm:ss' 형태로 변환
     const formattedDateTime = formatDateTime(dateTimeValue);
+    var product_id = document.getElementById('currentProductId').value;
 
+    console.log(product_id);
     // 예약 데이터 객체를 생성합니다.
     const reservationData = {
         'user_id': user_id, // 이 값은 세션 또는 로그인 상태에서 가져와야 합니다.
-        'product_id': 1, // 선택된 상품의 ID
+        'product_id': product_id, // 선택된 상품의 ID
         'quantity': parseInt(quantityInput.value, 10), // 선택된 수량
         'time': formattedDateTime
     };
@@ -138,14 +157,14 @@ function formatDateTime(dateTimeValue) {
 
 function sendDeliver() {
     var userId = sessionStorage.getItem('user_id');
-    var productId = 1; // 예시로 4를 사용한 상품 ID
+    var productId = document.getElementById('currentProductId');
     var quantityInput = document.getElementById('quantity');
     var addressInput = document.getElementById('address');
-
+    var product_id = document.getElementById('currentProductId').value;
     // 배달 데이터 객체 생성
     const deliverData = {
         'user_id': userId,
-        'product_id': productId,
+        'product_id': parseInt(product_id, 10),
         'quantity': parseInt(quantityInput.value, 10),
         'address': addressInput.value
     };
@@ -175,3 +194,10 @@ function sendDeliver() {
             alert('배달 주문에 실패했습니다. 다시 시도해주세요.');
         });
 }
+
+
+
+
+
+
+
