@@ -1,0 +1,231 @@
+/* 전체 페이지에 대한 기본 스타일링 */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Nanum Gothic Coding', monospace;
+}
+
+/* wrap 클래스 스타일링 */
+.wrap {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+*{
+    list-style: none;
+    text-decoration: none;
+    border-collapse: collapse;
+    margin: 0px;
+    padding: 0px;
+    color: black;
+    font-family: 'Noto Serif KR', serif; /* 변경된 폰트 적용 */
+    background-color: white; /* 기본 배경색을 하얀색으로 변경 */
+}
+.intro_bg{
+    width:100%;
+    height:130px;
+    position: static;
+}
+
+
+.intro_name{
+    background-color: white; /* 기본 배경색을 하얀색으로 변경 */
+    text-align: center;
+}
+
+.intro_name a center{
+    font-size: 70px;
+    font-family: 'Noto Serif KR', sans-serif; /* 변경된 폰트 적용 */
+}
+
+.intro_png{
+    width: 100%;
+    max-height: 25px;
+}
+
+.header{
+    display: flex;
+    width: 100%;
+    justify-content: flex-end; /* 내용을 오른쪽으로 정렬합니다. */
+    margin: auto;
+    background: white; /* 배경색 변경 */
+    font-size: 13px;
+}
+
+.nav{
+    display: flex;
+    height: 14px;
+    margin-left: auto; /* 나머지 공간을 왼쪽으로 정렬합니다. */
+
+}
+
+.nav li{
+    padding-top: 10px;
+
+    margin-left: 20px;
+}
+
+.nav li a1{
+    color: rgb(169, 165, 165);
+    cursor: pointer;
+}
+
+.menu_bar{
+    max-width: 100%;
+    height: 33px;
+    position: relative;
+    background-color:white /* 배경색 변경 */
+;
+}
+
+.menu_bar_inside a{
+    font-size: 25px;
+    font-family: 'Noto Serif KR', sans-serif; /* 변경된 폰트 적용 */
+    margin-left: 65px;
+    margin-right: 125px;
+    display: inline-block;
+    background-color: transparent;
+}
+
+.menu_bar_inside a1{
+    font-size: 25px;
+    font-family: 'Noto Sans KR', sans-serif; /* 변경된 폰트 적용 */
+    margin-left: 65px;
+    margin-right: 125px;
+    display: inline-block;
+    background-color: transparent;
+    color: gray;
+    cursor: pointer;
+}
+
+.menu_bar_inside{
+    transform: translate(10%, 10%);
+}
+
+.menu_bar .menu_bar_inside a:hover, .menu_bar .menu_bar_inside a1:hover{
+    transform: scale(1.3);
+    color: rgb(128, 128, 128);
+}
+
+.middle{
+    width: 100%;
+    height: 250px;
+}
+
+.container{
+
+    width: 100%;
+    display:flex;
+}
+
+.btm{
+    border: dotted 1px rgb(230, 230, 199);
+}
+
+
+/* 상품 상세 정보 스타일링 */
+.product-details {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 50px;
+}
+
+/* 상품 이미지 스타일링 */
+.product-image {
+    flex: 1;
+}
+
+.product-image img {
+    width: 100%;
+    max-width: 500px; /* 이미지 최대 크기 조정 */
+}
+
+/* 상품 정보 및 예약 폼 컨테이너 스타일링 */
+.product-info {
+    flex: 1;
+    padding: 0 20px;
+    max-width: 500px;
+}
+
+.product-info h2 {
+    margin: 0;
+    color: #333;
+    font-size: 24px;
+}
+
+.product-info p {
+    color: #666;
+    line-height: 1.6;
+}
+
+.product-info .buttons {
+    display: flex; /* Aligns buttons side by side */
+    gap: 10px; /* Adds space between buttons */
+}
+
+/* Style individual buttons */
+.product-info .buttons button {
+    padding: 10px 20px; /* Adjust padding as needed */
+    border: 1px solid #ddd; /* Optional border */
+    background-color: #5cb85c; /* Use a color that matches your design */
+    color: white;
+    cursor: pointer;
+}
+
+.product-info .buttons button:hover {
+    background-color: #4cae4c; /* A slightly darker shade on hover */
+}
+
+/* If you need to add different colors for the delivery button */
+#deliveryButton {
+    background-color: #f0ad4e; /* Example color for delivery button */
+}
+
+#deliveryButton:hover {
+    background-color: #ec971f; /* Darker shade for hover state */
+}
+
+.quantity-selector {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Adds space between elements */
+    margin-bottom: 10px; /* Adds space above the buttons */
+}
+
+.quantity-selector label {
+    font-size: 16px; /* Adjust the font size as needed */
+}
+
+.quantity-selector input[type="number"] {
+    width: 50px; /* Adjust the width as needed */
+    padding: 5px;
+    text-align: center;
+}
+
+.quantity-btn {
+    padding: 5px 10px;
+    border: 1px solid #ddd;
+    cursor: pointer;
+    background-color: #e6e6e6; /* Light grey background */
+}
+
+.quantity-btn:hover {
+    background-color: #d4d4d4; /* Slightly darker grey on hover */
+}
+
+
+/* 반응형 디자인: 화면 크기에 따라 스타일링 조정 */
+@media (max-width: 768px) {
+    .product-details {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .product-image img {
+        max-width: 100%;
+    }
+
+    .product-info {
+        max-width: 100%;
+        padding: 0;
+    }
+}

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="./images/favicon.ico" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>자연수</title>
+    <link rel="stylesheet" type="text/css" href="main.css?ver=7">
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="./main.js"></script>
+   
+</head>
+<script>
+    const list = document.createDocumentFragment();
+
+    async function getMenu() {
+        const url = `http://localhost:8888/product.php/main`;
+        const options = {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        };
+        const res = await fetch(url, options);
+        const data = await res.json();
+        if (res.ok) {
+            <!-- console.log(data) -->
+            return data;
+        } else {
+            throw Error(data);
+        }   
+    }
+
+
+</script>
+<body>
+    <div class="wrap">
+      
+        <div class="intro_bg">
+            <div class="header">
+                <ul class="nav">
+                    <li><a href="#" onclick="location.href='login.html'">로그인</a></li>
+                    <li><a href="#" onclick="Confirm()"> 로그아웃</a></li>
+                    <li><a href="#" onclick="location.href='signin.html'">회원가입</a></li>
+                    <li><a1 href="#"onclick="location.href='adlogin.html'">관리자전용</a1></li>
+                </ul>
+            </div>
+            <div class="intro_name">
+                <a href="#" onclick="location.href='main.html'"><center>자연수</center></a>
+            </div>
+            <div class="intro_png">
+                <img src="./images/rainbow.png" alt="" width="100%">
+            </div>
+        </div>
+
+        <div class="menu_bar">
+            <div class="menu_bar_inside">
+                <a href="#" onclick="location.href='togo.html'">오시는길</a>
+                <a href="#" onclick="location.href='side.html'">반찬</a>
+                <a href="#" onclick="location.href='reserve.html'">예약조회</a>
+                <a href="#" onclick="location.href='deliver.html'">배달조회</a>
+
+            </div>
+        </div>
+
+        <div class="menu-container">
+            <div class="product-item">
+                <a href="reserve.html?productId=1">
+                    <img src="./images/menu_dubu.jpg" alt="두부 요리">
+                    <h3>두부 무침</h3>
+                    <p>상품 설명</p>
+                    <p>가격: 10,000원</p>
+                </a>
+            </div>
+
+            <div class="product-item" data-product-id="2">
+                <img src="./images/menu_kongnamul.jpg" alt="콩나물 요리"  height="260px">
+                <h3>콩나물 무침</h3>
+                <p>상품 설명</p>
+                <p>가격: 12,000원</p>
+            </div>
+
+            <div class="product-item" data-product-id="3">
+                <img src="./images/menu_spinach.jpg" alt="시금치 요리"   height="260px">
+                <h3>시금치 무침</h3>
+                <p>상품 설명</p>
+                <p>가격: 15,000원</p>
+            </div>
+
+        </div>
+
+        <div class="rcmd">
+            <center>
+
+                <script>
+                    renderMenus();
+                </script>
+
+
+        </center>
+        </div>
+        
+    </div>
+
+    
+</body>
+</html>
