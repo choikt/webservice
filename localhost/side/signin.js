@@ -50,9 +50,6 @@ function Check(){
 
 
 
-
-
-
      var id= RegExp(/^[a-z]{1}[a-z0-9]{3,11}$/)
      var pass= RegExp(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,15}$/)
      var named= RegExp(/^[가-힣]+$/)

@@ -19,7 +19,8 @@ body, html {
     margin: 0px;
     padding: 0px;
     color: black;
-    font-family: 'Noto Serif KR', serif; /* 변경된 폰트 적용 */
+    /*font-family: 'Noto Sans KR', monospace;*/
+
     background-color: white; /* 기본 배경색을 하얀색으로 변경 */
 }
 
@@ -37,12 +38,26 @@ body, html {
 
 .intro_name a center{
     font-size: 70px;
-    font-family: 'Noto Serif KR', sans-serif; /* 변경된 폰트 적용 */
+    /*font-family: 'Noto Serif KR', sans-serif; !* 변경된 폰트 적용 *!*/
 }
 
 .intro_png{
     width: 100%;
     max-height: 25px;
+}
+
+.intro_text{
+    font-size: 18px;
+    padding-top: 60px;
+    color: grey;
+    text-align: center;
+}
+
+.intro_text2{
+    font-size: 30px;
+    font-weight: 300;
+    color: #ea5514;
+    text-align: center;
 }
 
 .header{
@@ -63,7 +78,6 @@ body, html {
 
 .nav li{
     padding-top: 10px;
-
     margin-left: 20px;
 }
 
@@ -95,7 +109,7 @@ body, html {
 .menu_bar_inside a,
 .menu_bar_inside a1 {
     font-size: 25px;
-    font-family: 'Noto Serif KR', sans-serif; /* 변경된 폰트 적용 */
+    /*font-family: 'Noto Serif KR', sans-serif; !* 변경된 폰트 적용 *!*/
     color: black; /* 색상 설정 */
     text-decoration: none; /* 밑줄 제거 */
     padding: 0 10px; /* 좌우 패딩 추가 */
@@ -116,19 +130,60 @@ body, html {
     margin-top: 25px; /* 상단 여백 설정 */
 }
 
-.product-admin {
-    background: #fff;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    max-width: 500px;
+
+.menu-container {
+    display: grid;
+    /* 그리드 아이템의 최소 너비를 늘리고, 1fr로 유연하게 채우기 */
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px;
+    padding : 30px;
+}
+
+.product-item {
+    border: none;
+    padding: 10px;
+    text-align: left;
+    height: 300px;
+    weight: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+
+#name{
+    font-family: 'Noto Sans KR', sans-serif;
+}
+
+.product-item img {
+    width: 100%; /* 이미지 너비를 컨테이너의 100%로 설정 */
+    height: 60%; /* 이미지 높이를 컨테이너의 60%로 설정 */
+    object-fit: cover; /* 이미지가 꽉 차게 설정 */
     margin: auto;
 }
 
-.product-admin h1 {
-    text-align: center;
+/* product_semi_info 스타일 추가 */
+#semi {
+    margin-top: 5px;
+    font-size: 0.8em; /* 글씨 크기를 줄임 */
+    color: grey; /* 글씨 색상을 회색으로 변경 */
+    /*font-family: 'Noto Sans KR', monospace;*/
 }
 
+.price {
+    margin-top: 20px; /* 위쪽 여백 추가 */
+    font-size: 1em; /* 글씨 크기 증가 */
+    font-weight: 800;
+    /*font-family: 'Noto Sans KR', monospace;*/
+    color: #ea5514; /* 글씨 색상을 오렌지색으로 설정 */
+}
+
+.gram {
+    margin-top: 20px; /* 위쪽 여백 추가 */
+    font-size: 0.8em; /* 글씨 크기 증가 */
+    /*font-family: 'Noto Sans KR', monospace;*/
+    color: grey; /* 글씨 색상을 오렌지색으로 설정 */
+}
 form#productForm label {
     display: block;
     margin-top: 10px;
@@ -155,45 +210,7 @@ form#productForm input[type="submit"]:hover {
 }
 
 
-.product-name{
-    padding-top: 10px;
-    font-size: 20px;
-    display: inline-block;
-}
-.product-price{
-    padding-top: 5px;
-    font-size: 17px;
-    display: inline-block;
 
-}
-
-
-
-.menu-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 20px;
-    padding: 20px;
-}
-
-.product-item {
-    border: 1px solid #ccc;
-    padding: 10px;
-    text-align: center;
-    /* 이미지 컨테이너의 높이를 설정합니다. */
-    height: 300px; /* 이 값은 원하는 크기에 맞게 조정할 수 있습니다. */
-    display: flex;
-    flex-direction: column;
-    justify-content: center; /* 내부 아이템을 중앙에 배치합니다. */
-}
-
-.product-item img {
-    max-width: 100%; /* 최대 너비를 100%로 설정하여 컨테이너를 넘지 않도록 합니다. */
-    max-height: 100%; /* 최대 높이도 설정하여 컨테이너를 넘지 않도록 합니다. */
-    /* 이미지가 비율을 유지하면서 컨테이너에 맞게 조정되도록 합니다. */
-    object-fit: contain; /* 이미지가 꽉 차게 할 경우는 'cover'를 사용합니다. */
-    margin: auto; /* 상하 좌우 마진을 auto로 설정하여 중앙에 배치합니다. */
-}
 
 .modal {
     display: none; /* Hidden by default */

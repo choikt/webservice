@@ -23,12 +23,15 @@ function displayProducts(products) {
         productDiv.className = 'product-item';
         productDiv.onclick = function() { showModal(product); }; // 클릭 이벤트를 할당합니다.
         productDiv.innerHTML = `
+                    <img src="./images/${product.product_id}.jpg" alt="${product.product_name}">
+                    <p id="semi">${product.product_semi_info}</p>
+                    <h4 id ="name">${product.product_name}</h3>
+                    <p>
+                        <span class = "price">${product.price.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")} 원</span>
+                        <span class = "gram">/ ${product.gram} </span>
+                    </p>
 
-            <img src="./images/${product.product_id}.jpg" alt="${product.product_name}">
-            <p>${product.product_semi_info}</p>
-            <h3>${product.product_name}</h3>
-            <p>가격: ${product.price}원</p>
-        `;
+            `;
         container.appendChild(productDiv);
     });
 }

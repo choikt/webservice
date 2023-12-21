@@ -134,7 +134,7 @@ body, html {
 .menu-container {
     display: grid;
     /* 그리드 아이템의 최소 너비를 늘리고, 1fr로 유연하게 채우기 */
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* 예시로 250px로 설정 */
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 10px;
     padding : 30px;
 }
@@ -223,15 +223,3 @@ body, html {
     /* 필요한 추가 스타일링 */
 }
 
-/* 태블릿 및 데스크탑 뷰 (화면 너비가 768px 초과) */
-@media (min-width: 769px) {
-    .menu-container {
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    }
-
-    .product-item {
-        height: 300px; /* 데스크탑에서는 고정 높이 */
-    }
-
-    /* 필요한 추가 스타일링 */
-}
