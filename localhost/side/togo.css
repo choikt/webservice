@@ -6,13 +6,6 @@ body, html {
     font-family: 'Noto Sans KR', sans-serif;
 
 }
-body, html {
-    margin: 0;
-    padding: 0;
-    font-family: 'Nanum Gothic Coding', monospace;
-}
-
-/* wrap 클래스 스타일링 */
 .wrap {
     max-width: 1200px;
     margin: 0 auto;
@@ -24,7 +17,8 @@ body, html {
     margin: 0px;
     padding: 0px;
     color: black;
-    font-family: 'Nanum Gothic Coding', monospace;
+    /*font-family: 'Noto Sans KR', monospace;*/
+
     background-color: white; /* 기본 배경색을 하얀색으로 변경 */
 }
 
@@ -42,7 +36,7 @@ body, html {
 
 .intro_name a center{
     font-size: 70px;
-    font-family: 'Noto Sans KR', sans-serif; /* 변경된 폰트 적용 */
+    /*font-family: 'Noto Serif KR', sans-serif; !* 변경된 폰트 적용 *!*/
 }
 
 .intro_png{
@@ -52,8 +46,8 @@ body, html {
 
 .header{
     display: flex;
-    justify-content: flex-end; /* 내용을 오른쪽으로 정렬합니다. */
     width: 100%;
+    justify-content: flex-end; /* 내용을 오른쪽으로 정렬합니다. */
     margin: auto;
     background: white; /* 배경색 변경 */
     font-size: 13px;
@@ -63,12 +57,11 @@ body, html {
     display: flex;
     height: 14px;
     margin-left: auto; /* 나머지 공간을 왼쪽으로 정렬합니다. */
+
 }
 
 .nav li{
-    /* margin-left: 20px;
-    padding-top: 10px; */
-    padding-top: 3.3%;
+    padding-top: 10px;
 
     margin-left: 20px;
 }
@@ -76,15 +69,6 @@ body, html {
 .nav li a1{
     color: rgb(169, 165, 165);
     cursor: pointer;
-}
-
-.menu_bar{
-    max-width: 100%;
-    height: 33px;
-    position: relative;
-    background-color:white /* 배경색 변경 */
-;
-    overflow: hidden;
 }
 
 .menu_bar {
@@ -109,7 +93,7 @@ body, html {
 .menu_bar_inside a,
 .menu_bar_inside a1 {
     font-size: 25px;
-    font-family: 'Noto Serif KR', sans-serif; /* 변경된 폰트 적용 */
+    /*font-family: 'Noto Serif KR', sans-serif; !* 변경된 폰트 적용 *!*/
     color: black; /* 색상 설정 */
     text-decoration: none; /* 밑줄 제거 */
     padding: 0 10px; /* 좌우 패딩 추가 */

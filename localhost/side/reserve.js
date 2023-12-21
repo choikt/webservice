@@ -22,7 +22,7 @@ async function fetchProductData(productId) {
 
 function displayProductData(product) {
     if (!product) return;
-
+    document.getElementById('semi_info').textContent = product.product_semi_info;
     document.getElementById('productImage').src = `./images/${product.product_id}.jpg`; // 예시 이미지 경로
     document.getElementById('productName').textContent = product.product_name;
     const productGram = document.createElement('p');
@@ -30,6 +30,13 @@ function displayProductData(product) {
     productGram.style.fontSize = 'small'; // 작은 글씨 크기 설정
     const productInfoDiv = document.getElementById('productInfo');
     productInfoDiv.appendChild(productGram); // 제품 이름 바로 아래에 그램 정보 추가
+    const divider = document.createElement('div');
+    divider.style.borderBottom = '1px solid #ccc'; // 구분선 스타일 설정
+    divider.style.marginTop = '5px'; // 위쪽 마진 설정
+    divider.style.marginBottom = '50px'; // 아래쪽 마진 설정
+
+// 생성한 구분선을 productInfoDiv에 추가
+    productInfoDiv.appendChild(divider);
     document.getElementById('productDescription').textContent = product.product_info;
     document.getElementById('productPrice').textContent = `가격: ${product.price}원`;
 
