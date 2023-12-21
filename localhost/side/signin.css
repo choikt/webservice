@@ -6,7 +6,6 @@ body, html {
     font-family: 'Noto Sans KR', sans-serif;
 
 }
-/* wrap 클래스 스타일링 */
 .wrap {
     max-width: 1200px;
     margin: 0 auto;
@@ -18,7 +17,8 @@ body, html {
     margin: 0px;
     padding: 0px;
     color: black;
-    font-family: 'Nanum Gothic Coding', monospace;
+    /*font-family: 'Noto Sans KR', monospace;*/
+
     background-color: white; /* 기본 배경색을 하얀색으로 변경 */
 }
 
@@ -26,7 +26,6 @@ body, html {
     width:100%;
     height:130px;
     position: static;
-    background-color: white; /* 기본 배경색을 하얀색으로 변경 */
 }
 
 
@@ -37,7 +36,7 @@ body, html {
 
 .intro_name a center{
     font-size: 70px;
-    font-family: 'Noto Sans KR', sans-serif; /* 변경된 폰트 적용 */
+    /*font-family: 'Noto Serif KR', sans-serif; !* 변경된 폰트 적용 *!*/
 }
 
 .intro_png{
@@ -47,8 +46,8 @@ body, html {
 
 .header{
     display: flex;
-    justify-content: flex-end; /* 내용을 오른쪽으로 정렬합니다. */
     width: 100%;
+    justify-content: flex-end; /* 내용을 오른쪽으로 정렬합니다. */
     margin: auto;
     background: white; /* 배경색 변경 */
     font-size: 13px;
@@ -62,8 +61,9 @@ body, html {
 }
 
 .nav li{
-    margin-left: 20px;
     padding-top: 10px;
+
+    margin-left: 20px;
 }
 
 .nav li a1{
@@ -71,39 +71,50 @@ body, html {
     cursor: pointer;
 }
 
-.menu_bar{
+.menu_bar {
     max-width: 100%;
     height: 33px;
     position: relative;
-    background-color:white /* 배경색 변경 */
-;
-    overflow: hidden;
+    background-color: rgba(255,255,255, 0); /* 배경색 변경 */
+    display: flex; /* Flexbox를 활성화합니다 */
+    align-items: center; /* 세로 중앙 정렬 */
+    justify-content: center; /* 가로 중앙 정렬 */
+    padding-top: 50px;
 }
 
-.menu_bar_inside a{
+.menu_bar_inside {
+    display: flex; /* 이 또한 flex container로 만듭니다 */
+    width: 100%; /* 부모 요소의 전체 너비를 차지 */
+    justify-content: space-around; /* 항목들 사이에 공간을 균등하게 분배 */
+    padding: 0; /* 필요에 따라 패딩 조정 */
+    list-style: none; /* 기본 리스트 스타일 제거 */
+    margin: 0; /* 기본 마진 제거 */
+}
+
+.menu_bar_inside a,
+.menu_bar_inside a1 {
     font-size: 25px;
-    font-family: 'Noto Sans KR', sans-serif; /* 변경된 폰트 적용 */
-    margin-left: 65px;
-    margin-right: 125px;
-    display: inline-block;
+    /*font-family: 'Noto Serif KR', sans-serif; !* 변경된 폰트 적용 *!*/
+    color: black; /* 색상 설정 */
+    text-decoration: none; /* 밑줄 제거 */
+    padding: 0 10px; /* 좌우 패딩 추가 */
+    cursor: pointer;
+    background-color: transparent;
 }
 
-
-
-.menu_bar_inside{
-    transform: translate(10%, 10%);
-}
-
-.menu_bar .menu_bar_inside a:hover{
+.menu_bar .menu_bar_inside a:hover,
+.menu_bar .menu_bar_inside a1:hover {
     transform: scale(1.3);
     color: rgb(128, 128, 128);
 }
+
 .menu_bar_bottom_line {
     height: 1.5px; /* 선의 두께 설정 */
     background-color: #000; /* 선의 색상을 검은색으로 설정 */
     width: 100%; /* 선의 너비를 뷰포트 너비로 설정 */
-    margin-top: 25px;
+    margin-top: 25px; /* 상단 여백 설정 */
 }
+
 form {
     font-family: '나눔고딕', sans-serif;
     margin: 0;
@@ -171,4 +182,59 @@ form {
 
 .gosignin:hover {
     background-color: #0056b3;
+}
+
+@media (max-width: 768px) {
+    .wrap {
+        max-width: 100%;
+        padding: 0 10px;
+    }
+
+    .intro_bg {
+        height: 100px; /* 높이 조정 */
+    }
+
+    .intro_name a center {
+        font-size: 50px; /* 폰트 크기 조정 */
+    }
+
+    .header {
+        flex-direction: column; /* 수직 정렬 */
+        align-items: center; /* 중앙 정렬 */
+    }
+
+    .nav {
+        flex-direction: column; /* 네비게이션 항목을 세로로 배치 */
+        align-items: center; /* 중앙 정렬 */
+        margin-top: 10px; /* 상단 여백 추가 */
+    }
+
+    .nav li {
+        margin: 5px 0; /* 상하 여백 조정 */
+    }
+
+    .nav li a1 {
+        font-size: 15px; /* 메뉴 항목의 폰트 크기 조정 */
+    }
+
+    .menu_bar {
+        flex-direction: column; /* 메뉴 바를 수직으로 배치 */
+    }
+
+    .menu_bar_inside {
+        flex-direction: column; /* 메뉴 항목을 수직으로 배치 */
+        align-items: center; /* 중앙 정렬 */
+    }
+
+    .menu_bar_inside a,
+    .menu_bar_inside a1 {
+        font-size: 20px; /* 메뉴 항목의 폰트 크기 조정 */
+        margin: 5px; /* 여백 추가 */
+    }
+
+    .menu_bar_bottom_line {
+        margin-top: 15px; /* 상단 여백 조정 */
+    }
+
+    /* 추가적인 요소에 대한 스타일 조정 */
 }

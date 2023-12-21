@@ -76,10 +76,11 @@ body, html {
     max-width: 100%;
     height: 33px;
     position: relative;
-    background-color: white; /* 배경색 변경 */
+    background-color: rgba(255,255,255, 0); /* 배경색 변경 */
     display: flex; /* Flexbox를 활성화합니다 */
     align-items: center; /* 세로 중앙 정렬 */
     justify-content: center; /* 가로 중앙 정렬 */
+    padding-top: 50px;
 }
 
 .menu_bar_inside {
@@ -250,16 +251,23 @@ body, html {
 }
 
 .modal-content {
-    font-family: 'Noto Sans KR', sans-serif;
     background-color: #fefefe;
-    margin: 10% auto;
+    margin: 10% auto; /* 모달을 화면의 중앙에 배치 */
     padding: 20px;
     border: 1px solid #888;
     border-radius: 10px;
-    width: 50%;
+    width: 40%; /* 모달의 가로 길이를 줄임 */
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
-
+#modal_a {
+    background-color: #fefefe;
+    margin: 10% auto; /* 모달을 화면의 중앙에 배치 */
+    padding: 20px;
+    border: 1px solid #888;
+    border-radius: 10px;
+    width: 30%; /* 모달의 가로 길이를 줄임 */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
 .close {
     color: #aaa;
     float: right;
@@ -310,6 +318,8 @@ body, html {
 
 /* 반응형 디자인: 화면 크기에 따라 스타일링 조정 */
 @media (max-width: 768px) {
+    /* 모바일 및 태블릿 화면 크기에 대한 스타일링 */
+
     .product-details {
         flex-direction: column;
         align-items: center;
@@ -322,5 +332,37 @@ body, html {
     .product-info {
         max-width: 100%;
         padding: 0;
+    }
+
+    .wrap {
+        max-width: 100%; /* 화면 크기에 맞춰 최대 너비 조정 */
+        padding: 0 10px; /* 좌우 여백 감소 */
+    }
+
+    .menu_bar {
+        flex-direction: column; /* 메뉴 항목을 세로로 배치 */
+    }
+
+    .menu_bar_inside {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .menu_bar_inside a,
+    .menu_bar_inside a1 {
+        padding: 5px; /* 메뉴 항목의 패딩 감소 */
+    }
+
+    .modal-content,
+    #modal_a {
+        width: 90%; /* 모달의 너비를 화면에 맞게 조정 */
+        margin: 5% auto;
+    }
+
+    .modal-content h2,
+    .modal-content input[type="text"],
+    .modal-content input[type="button"],
+    .modal-content button {
+        font-size: smaller; /* 모달 내 텍스트 크기 조정 */
     }
 }

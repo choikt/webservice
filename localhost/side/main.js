@@ -29,9 +29,11 @@ function displayProducts(products) {
                 <a href="reserve.html?productId=${product.product_id}">
                     <img src="./images/${product.product_id}.jpg" alt="${product.product_name}">
                     <p id="semi">${product.product_semi_info}</p>
-                    <h3 id ="name">${product.product_name}</h3>
-                    <h3 id="price">${product.price.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")} 원</h3>
-                    <h6 id="gram">/ ${product.gram}</h3>
+                    <h4 id ="name">${product.product_name}</h3>
+                    <p>
+                        <span class = "price">${product.price.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")} 원</span>
+                        <span class = "gram">/ ${product.gram} </span>
+                    </p>
                 </a>
             `;
             container.appendChild(productDiv);

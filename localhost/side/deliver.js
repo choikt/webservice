@@ -36,13 +36,15 @@ function displaydelivery(delivery) {
 
     delivery.forEach(deliveryItem => {
         const itemElement = document.createElement('div');
+        var total =deliveryItem.price * deliveryItem.quantity;
         itemElement.className = 'delivery-item';
+        let itemHTML = `<img src="./images/${deliveryItem.product_id}.jpg" alt="${deliveryItem.product_name}" style="width: 100px; height: auto; float: left; margin-right: 10px;">`;
 
-        let itemHTML = `
+        itemHTML += `
             <h3>${deliveryItem.product_name}</h3>
             <p>예약자: ${deliveryItem.name}</p>
             <p>수량: ${deliveryItem.quantity}</p>
-            <p>가격: ${deliveryItem.price}원</p>
+            <p>가격: ${total}원</p>
             <p>주소: ${deliveryItem.address}</p>
         `;
 

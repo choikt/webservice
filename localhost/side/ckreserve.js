@@ -35,15 +35,17 @@ function displayReservations(reservations) {
 
     reservations.forEach(reservation => {
         const itemElement = document.createElement('div');
+        var total =reservation.price * reservation.quantity;
         itemElement.className = 'reservation-item';
-        let itemHTML = `
+        let itemHTML = `<img src="./images/${reservation.product_id}.jpg" alt="${reservation.product_name}" style="width: 100px; height: auto; float: left; margin-right: 10px;">`;
+
+        itemHTML += `
             <h3>${reservation.product_name}</h3>
             <p>예약자: ${reservation.name}</p>
             <p>수량: ${reservation.quantity}</p>
-            <p>가격: ${reservation.price}원</p>
+            <p>가격: ${total}원</p>
             <p>예약 시간: ${reservation.time}</p>
         `;
-
         if(authority === 'admin') {
 
             itemHTML += `
