@@ -246,3 +246,40 @@ form#productForm input[type="submit"]:hover {
     text-decoration: none;
     cursor: pointer;
 }
+
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .nav {
+        margin-left: 0;
+        justify-content: center;
+        padding-top: 10px;
+    }
+
+    .menu_bar_inside {
+        transform: translate(0, 10%);
+        text-align: center;
+    }
+
+    .menu-container {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
+
+    .product-item {
+        height: auto; /* 모바일에서는 높이를 자동으로 조절 */
+    }
+
+    .modal-content {
+        flex-direction: column;
+        width: 90%; /* 모달의 너비를 줄입니다 */
+    }
+
+    .modal-image, .modal-info {
+        width: 100%; /* 모달 내부 요소들의 너비를 조절합니다 */
+    }
+
+    /* 필요한 추가 스타일링 */
+}

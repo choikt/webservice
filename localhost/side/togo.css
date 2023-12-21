@@ -228,4 +228,33 @@ body, html {
 
 
 
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        align-items: center;
+        padding: 10px 0; /* 상단 및 하단 패딩 추가 */
+    }
 
+    .nav {
+        margin-left: 0;
+        justify-content: center;
+        padding-top: 10px;
+        width: 100%; /* 너비 설정 */
+    }
+
+    .nav li {
+        margin-left: 10px; /* 모바일에서의 간격 조정 */
+        padding-top: 5px; /* 간격 조정 */
+    }
+
+    .nav li a {
+        font-size: 15px; /* 모바일에서 폰트 크기 증가 */
+    }
+
+
+    .menu_bar_inside {
+        transform: translate(0, 10%);
+        text-align: center;
+    }
+
+}
