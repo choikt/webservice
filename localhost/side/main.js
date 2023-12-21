@@ -26,9 +26,9 @@ function displayProducts(products) {
             productDiv.innerHTML = `
                 <a href="reserve.html?productId=${product.product_id}">
                     <img src="./images/${product.product_id}.jpg" alt="${product.product_name}">
-                    <p>${product.product_semi_info}</p>
-                    <h3>${product.product_name}</h3>
-                    <p>가격: ${product.price}원</p>
+                    <p id="semi">${product.product_semi_info}</p>
+                    <h3 id ="name">${product.product_name}</h3>
+                    <p id="price">${product.price} 원</p>
                 </a>
             `;
             container.appendChild(productDiv);
