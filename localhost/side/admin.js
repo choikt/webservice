@@ -60,7 +60,6 @@ function updateProduct() {
         gram: gram,
         sale: sale
     };
-    console.log(productData);
     // Setup the request options for the PATCH request
     const requestOptions = {
         method: 'PATCH',
