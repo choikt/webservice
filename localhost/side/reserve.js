@@ -157,16 +157,19 @@ function formatDateTime(dateTimeValue) {
 
 function sendDeliver() {
     var userId = sessionStorage.getItem('user_id');
-    var productId = document.getElementById('currentProductId');
+
     var quantityInput = document.getElementById('quantity');
-    var addressInput = document.getElementById('address');
+    var addressInput_road = document.getElementById('sample4_roadAddress');
+    var addressInput_detail = document.getElementById('sample4_detailAddress');
+
+    var addressInput = addressInput_road.value + ' ' + addressInput_detail.value;
     var product_id = document.getElementById('currentProductId').value;
     // 배달 데이터 객체 생성
     const deliverData = {
         'user_id': userId,
         'product_id': parseInt(product_id, 10),
         'quantity': parseInt(quantityInput.value, 10),
-        'address': addressInput.value
+        'address': addressInput
     };
 
     console.log(deliverData);

@@ -19,28 +19,24 @@ function displayProducts(products) {
     container.innerHTML = ''; // Clear the container
 
     products.forEach(product => {
+        const productDiv = document.createElement('div');
+        productDiv.className = 'product-item';
+        productDiv.onclick = function() { showModal(product); }; // 클릭 이벤트를 할당합니다.
+        productDiv.innerHTML = `
 
-            const productDiv = document.createElement('div');
-            productDiv.className = 'product-item';
-            productDiv.innerHTML = `
-     
-                <div onclick="showModal(${product})">
-                
-                    <img src="./images/${product.product_id}.jpg" alt="${product.product_name}">
-                    <p>${product.product_semi_info}</p>
-                    <h3>${product.product_name}</h3>
-                    <p>가격: ${product.price}원</p>
-                </div>
-            `;
-            container.appendChild(productDiv);
-
+            <img src="./images/${product.product_id}.jpg" alt="${product.product_name}">
+            <p>${product.product_semi_info}</p>
+            <h3>${product.product_name}</h3>
+            <p>가격: ${product.price}원</p>
+        `;
+        container.appendChild(productDiv);
     });
 }
 function showModal(product) {
     // Populate the modal with the current product details
     // You'd fetch the current product details and populate the fields
     // For now, we'll simulate with placeholders
-    console.log(product);
+
     document.getElementById('modalProductId').value = product.product_id;
     document.getElementById('modalPrice').value = product.price; // Placeholder
     document.getElementById('modalGram').value = product.gram; // Placeholder
