@@ -43,16 +43,20 @@ function displaydelivery(delivery) {
             <p>예약자: ${deliveryItem.name}</p>
             <p>수량: ${deliveryItem.quantity}</p>
             <p>가격: ${deliveryItem.price}원</p>
+            <p>주소: ${deliveryItem.address}</p>
         `;
 
         if(authority === 'admin') {
+
             itemHTML += `
-                <select class="deliveryStatus" data-delivery-id="${deliveryItem.id}">
+                <select class="deliveryStatus" name="${deliveryItem.delivery_id}">
                     <option value="결제 대기" ${deliveryItem.status === '결제 대기' ? 'selected' : ''}>결제 대기</option>
                     <option value="결제 확인" ${deliveryItem.status === '결제 확인' ? 'selected' : ''}>결제 확인</option>
                 </select>
             `;
+
         }
+
 
         itemElement.innerHTML = itemHTML;
         listElement.appendChild(itemElement);
@@ -64,7 +68,8 @@ function displaydelivery(delivery) {
         listElement.addEventListener('change', function(event) {
             // 이벤트가 발생한 요소가 <select>인지 확인
             if (event.target && event.target.classList.contains('deliveryStatus')) {
-                const deliveryId = event.target.getAttribute('data-delivery-id');
+                // <select> 요소의 name 속성으로부터 deliveryId를 가져옴
+                const deliveryId = event.target.name;
                 console.log(deliveryId);
                 const newStatus = event.target.value;
                 updateDeliveryStatus(deliveryId, newStatus);
@@ -98,8 +103,6 @@ function updateDeliveryStatus(deliveryId, newStatus) {
 
                 alert('Failed to update product.');
             }
-            // Close the modal
-            closeModal();
         })
         .catch(error => {
             // Handle any errors

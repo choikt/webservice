@@ -23,12 +23,15 @@ function displayProducts(products) {
         if (product.sale === "1") {
             const productDiv = document.createElement('div');
             productDiv.className = 'product-item';
+            // const price = product.price.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+
             productDiv.innerHTML = `
                 <a href="reserve.html?productId=${product.product_id}">
                     <img src="./images/${product.product_id}.jpg" alt="${product.product_name}">
                     <p id="semi">${product.product_semi_info}</p>
                     <h3 id ="name">${product.product_name}</h3>
-                    <p id="price">${product.price} 원</p>
+                    <h3 id="price">${product.price.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")} 원</h3>
+                    <h6 id="gram">/ ${product.gram}</h3>
                 </a>
             `;
             container.appendChild(productDiv);

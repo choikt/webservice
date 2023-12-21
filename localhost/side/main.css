@@ -161,6 +161,13 @@ body, html {
     color: #EF6C00; /* 글씨 색상을 오렌지색으로 설정 */
 }
 
+#gram {
+    margin-top: 6px; /* 위쪽 여백 추가 */
+    font-size: 0.8em; /* 글씨 크기 증가 */
+    /*font-family: 'Noto Sans KR', monospace;*/
+    color: grey; /* 글씨 색상을 오렌지색으로 설정 */
+}
+
 /* 모바일 및 태블릿 뷰 (화면 너비가 768px 이하) */
 @media (max-width: 768px) {
     .header {
@@ -211,5 +218,4 @@ body, html {
 
     /* 필요한 추가 스타일링 */
 }
-
 
