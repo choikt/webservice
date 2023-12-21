@@ -1,3 +1,4 @@
+/* 전체 페이지에 대한 기본 스타일링 */
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap');
 
 body, html {
@@ -6,7 +7,6 @@ body, html {
     font-family: 'Noto Sans KR', sans-serif;
 
 }
-/* wrap 클래스 스타일링 */
 .wrap {
     max-width: 1200px;
     margin: 0 auto;
@@ -18,7 +18,8 @@ body, html {
     margin: 0px;
     padding: 0px;
     color: black;
-    font-family: 'Noto Serif KR', serif; /* 변경된 폰트 적용 */
+    /*font-family: 'Noto Sans KR', monospace;*/
+
     background-color: white; /* 기본 배경색을 하얀색으로 변경 */
 }
 
@@ -36,7 +37,7 @@ body, html {
 
 .intro_name a center{
     font-size: 70px;
-    font-family: 'Noto Serif KR', sans-serif; /* 변경된 폰트 적용 */
+    /*font-family: 'Noto Serif KR', sans-serif; !* 변경된 폰트 적용 *!*/
 }
 
 .intro_png{
@@ -93,7 +94,11 @@ body, html {
 .menu_bar_inside a,
 .menu_bar_inside a1 {
     font-size: 25px;
+
     font-family: 'Noto Serif KR', sans-serif; /* 변경된 폰트 적용 */
+
+    /*font-family: 'Noto Serif KR', sans-serif; !* 변경된 폰트 적용 *!*/
+
     color: black; /* 색상 설정 */
     text-decoration: none; /* 밑줄 제거 */
     padding: 0 10px; /* 좌우 패딩 추가 */
@@ -101,7 +106,12 @@ body, html {
     background-color: transparent;
 }
 
+
 .menu_bar .menu_bar_inside a:hover, .menu_bar .menu_bar_inside a1:hover{
+
+.menu_bar .menu_bar_inside a:hover,
+.menu_bar .menu_bar_inside a1:hover {
+
     transform: scale(1.3);
     color: rgb(128, 128, 128);
 }
@@ -110,7 +120,7 @@ body, html {
     height: 1.5px; /* 선의 두께 설정 */
     background-color: #000; /* 선의 색상을 검은색으로 설정 */
     width: 100%; /* 선의 너비를 뷰포트 너비로 설정 */
-    margin-top: 25px;
+    margin-top: 25px; /* 상단 여백 설정 */
 }
 .rc_bar{
     width: 100%;

@@ -102,6 +102,7 @@
                 <img src="" alt="상품 이미지" id="productImage">
             </div>
             <div class="product-info">
+                <p id="semi_info">상품 요약</p>
                 <h2 id="productName">상품 이름</h2>
                 <div id="productInfo"></div>
                 <p id="productDescription">상품 설명</p>
@@ -131,23 +132,21 @@
                 </label>
                 <button type="button" onclick="sendReservation()">예약 확인</button>
             </div>
-        </div>
+    </div>
 
         <!-- 배달 모달 -->
-        <div id="deliveryModal" class="modal">
-            <div class="modal-content">
-                <span class="close" onclick="closeModal('deliver')">&times;</span>
-                <h2>배달 주소 입력</h2>
+    <div id="deliveryModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('deliver')">&times;</span>
+            <h2>배달 주소 입력</h2>
                 <!-- 주소 입력 필드 -->
-                <input type="text" id="sample4_postcode" placeholder="우편번호">
-                <input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
-                <input type="text" id="sample4_roadAddress" placeholder="도로명주소">
-                <span id="guide" style="color:#999;display:none"></span>
-                <input type="text" id="sample4_detailAddress" placeholder="상세주소">
-                <button type="button" onclick="sendDeliver()">배달 주문</button>
-            </div>
-
-
+            <input type="text" id="sample4_postcode" placeholder="우편번호">
+            <input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
+            <input type="text" id="sample4_roadAddress" placeholder="도로명주소">
+            <input type="text" id="sample4_detailAddress" placeholder="상세주소">
+            <button id ="deliveryButton2" type="button" onclick="sendDeliver()">배달 주문</button>
+            <p id="bank">무통장 입금 : 국민은행  000000-00-000000 </p>
+        </div>
     </div>
 </div>
 </body>
