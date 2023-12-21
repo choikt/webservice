@@ -9,26 +9,35 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-async function fetchDeliver(userId) {
-    try {
+function fetchDeliver(userId) {
+    $.ajax({
+        url: `http://3.34.102.219/deliver.php?user_id=${userId}`,
+        type: 'GET',
+        dataType: 'json',
+        success: function(delivery) {
+            console.log(delivery);
+            displaydelivery(delivery);
+        },
+        error: function(xhr, status, error) {
+            console.error('배송 정보를 불러오는 데 실패했습니다:', error);
+        }
+    });
+}
 
-        const response = await fetch(`http://3.34.102.219/deliver.php?user_id=${userId}`);
-        const delivery = await response.json();
-        console.log(delivery);
-        displaydelivery(delivery);
-    } catch (error) {
-        console.error('배송 정보를 불러오는 데 실패했습니다:', error);
-    }
+function fetchDelivers_admin() {
+    $.ajax({
+        url: 'http://3.34.102.219/deliver.php',
+        type: 'GET',
+        dataType: 'json',
+        success: function(delivery) {
+            displaydelivery(delivery);
+        },
+        error: function(xhr, status, error) {
+            console.error('배송 정보를 불러오는 데 실패했습니다:', error);
+        }
+    });
 }
-async function fetchDelivers_admin() {
-    try {
-        const response = await fetch(`http://3.34.102.219/deliver.php`);
-        const delivery = await response.json();
-        displaydelivery(delivery);
-    } catch (error) {
-        console.error('배송 정보를 불러오는 데 실패했습니다:', error);
-    }
-}
+
 function displaydelivery(delivery) {
     const authority = sessionStorage.getItem("authority");
     const listElement = document.getElementById('deliveryList');

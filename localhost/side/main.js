@@ -2,18 +2,20 @@ document.addEventListener('DOMContentLoaded', (event) => {
     fetchProducts();
     showAdminOptions();
 });
-
-
-async function fetchProducts() {
-    try {
-        const response = await fetch('http://3.34.102.219/product.php');
-        const products = await response.json();
-        displayProducts(products);
-    } catch (error) {
-        console.error('상품 정보를 불러오는 데 실패했습니다:', error);
-    }
+function fetchProducts() {
+    $.ajax({
+        url: 'http://3.34.102.219/product.php',
+        type: 'GET',
+        dataType: 'json',
+        success: function(products) {
+            displayProducts(products);
+            console.log("성공");
+        },
+        error: function(xhr, status, error) {
+            console.error('상품 정보를 불러오는 데 실패했습니다:', error);
+        }
+    });
 }
-
 function displayProducts(products) {
     const container = document.getElementById('menu-container');
     container.innerHTML = ''; // 컨테이너 초기화

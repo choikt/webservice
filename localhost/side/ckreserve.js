@@ -8,25 +8,33 @@ document.addEventListener('DOMContentLoaded', function() {
         fetchReservations_admin();
     }
 });
+function fetchReservations(userId) {
+    $.ajax({
+        url: `http://3.34.102.219/reserve.php?user_id=${userId}`,
+        type: 'GET',
+        dataType: 'json',
+        success: function(reservations) {
+            displayReservations(reservations);
+        },
+        error: function(xhr, status, error) {
+            console.error('예약 정보를 불러오는 데 실패했습니다:', error);
+        }
+    });
+}
+function fetchReservations_admin(userId) {
+    $.ajax({
+        url: `http://3.34.102.219/reserve.php`,
+        type: 'GET',
+        dataType: 'json',
+        success: function(reservations) {
+            displayReservations(reservations);
+        },
+        error: function(xhr, status, error) {
+            console.error('예약 정보를 불러오는 데 실패했습니다:', error);
+        }
+    });
+}
 
-async function fetchReservations(userId) {
-    try {
-        const response = await fetch(`http://3.34.102.219/reserve.php?user_id=${userId}`);
-        const reservations = await response.json();
-        displayReservations(reservations);
-    } catch (error) {
-        console.error('예약 정보를 불러오는 데 실패했습니다:', error);
-    }
-}
-async function fetchReservations_admin() {
-    try {
-        const response = await fetch(`http://3.34.102.219/reserve.php`);
-        const reservations = await response.json();
-        displayReservations(reservations);
-    } catch (error) {
-        console.error('예약 정보를 불러오는 데 실패했습니다:', error);
-    }
-}
 
 function displayReservations(reservations) {
     const authority = sessionStorage.getItem("authority");
