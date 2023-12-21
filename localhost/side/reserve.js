@@ -26,7 +26,7 @@ function displayProductData(product) {
     document.getElementById('productImage').src = `./images/${product.product_id}.jpg`; // 예시 이미지 경로
     document.getElementById('productName').textContent = product.product_name;
     const productGram = document.createElement('p');
-    productGram.textContent = `${product.gram}g`;
+    productGram.textContent = `${product.gram}`;
     productGram.style.fontSize = 'small'; // 작은 글씨 크기 설정
     const productInfoDiv = document.getElementById('productInfo');
     productInfoDiv.appendChild(productGram); // 제품 이름 바로 아래에 그램 정보 추가

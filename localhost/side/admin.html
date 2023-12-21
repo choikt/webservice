@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="./images/favicon.ico" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>자연수</title>
+    <link rel="stylesheet" type="text/css" href="admin.css?ver=7">
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="./admin.js"></script>
+    <script type="text/javascript" src="./logout.js"></script>
+
+</head>
+
+<body>
+<div class="wrap">
+    <div class="intro_bg">
+        <div class="header">
+            <ul class="nav">
+                <li><a href="#" onclick="location.href='login.html'">로그인</a></li>
+                <li><a href="#" onclick="logout()">로그아웃</a></li>
+                <li><a href="#" onclick="location.href='signin.html'">회원가입</a></li>
+            </ul>
+        </div>
+        <div class="intro_name">
+            <a href="#" onclick="location.href='main.html'"><center>자연수</center></a>
+        </div>
+
+    </div>
+
+    <div class="menu_bar">
+        <div class="menu_bar_inside">
+            <a href="#" onclick="location.href='togo.html'">오시는길</a>
+            <a href="#" onclick="location.href='main.html'">반찬</a>
+            <a href="#" onclick="location.href='ckreserve.html'">예약조회</a>
+            <a href="#" onclick="location.href='deliver.html'">배달조회</a>
+
+        </div>
+    </div>
+    <div class="menu_bar_bottom_line"></div>
+    <div class="menu-container" id="menu-container">
+        <!-- 상품 목록이 여기에 동적으로 생성됩니다 -->
+    </div>
+    <div id="adminModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Edit Product</h2>
+            <form id="adminForm">
+                <input type="hidden" id="modalProductId">
+                <label for="modalPrice">Price:</label>
+                <input type="number" id="modalPrice" name="price" required>
+
+                <label for="modalGram">Weight (g):</label>
+                <input type="text" id="modalGram" name="gram" required>
+
+                <label for="modalSale">Sale:</label>
+                <select id="modalSale" name="sale">
+                    <option value="1">On Sale</option>
+                    <option value="0">Not on Sale</option>
+                </select>
+
+                <button type="button" onclick="updateProduct()">Update Product</button>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+
