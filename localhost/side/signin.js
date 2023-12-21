@@ -30,6 +30,8 @@ async function signin() {
          .then((data) => {
               console.log(data);
               alert('회원 가입이 완료되었습니다.');
+
+              window.location.href = 'http://localhost:63342/webservice/localhost/side/login.html';
          })
          .catch((error) => {
               console.error('There has been a problem with your fetch operation:', error);
@@ -51,12 +53,26 @@ function Check(){
 
 
      
-     var id= RegExp(/^[0-9]{11}$/)
-     var pass= RegExp(/^[a-zA-Z0-9]{4,12}$/)
+     var id= RegExp(/^[a-z]{1}[a-z0-9]{3,11}$/)
+     var pass= RegExp(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,15}$/)
      var named= RegExp(/^[가-힣]+$/)
 
 
+     //아이디 유효성검사
+     if(!id.test(idCheck.value)){
+          alert("아이디는 영문 + 숫자 조합, 최소 4글자, 최대 12글자로 입력해주세요.");
+          idCheck.value = "";
+          idCheck.focus();
+          return false;
+     }
 
+     //비밀번호 유효성검사
+     if(!pass.test(passCheck.value)){
+          alert("비밀번호는 영문 + 숫자 조합, 최소 8글자, 최대 15글자로 입력해주세요.");
+          passCheck.value= "";
+          passCheck.focus();
+          return false;
+     }
 
      //이름 공백 검사
      if(nameCheck.value == ""){
@@ -73,20 +89,7 @@ function Check(){
           return false;
      }
 
-     // //휴대폰번호 공백 확인
-     // if(idphoneCheck.value == ""){
-     //      alert("휴대폰번호를 입력해주세요.");
-     //      idphoneCheck.focus();
-     //      return false;
-     //      }
-     //
-     //      //휴대폰번호 유효성검사
-     // if(!id.test(idphoneCheck.value)){
-     //      alert("휴대폰번호 11자를 010부터 입력해주세요.");
-     //      idphoneCheck.value = "";
-     //      idphoneCheck.focus();
-     //      return false;
-     // }
+
      if (!/^[0-9]{3}-[0-9]{4}-[0-9]{4}$/.test(idphoneCheck.value)) {
           alert('휴대폰 번호는 xxx-xxxx-xxxx 형식이어야 합니다.');
           return;
@@ -137,12 +140,12 @@ function Check(){
      // }
 
           //비밀번호 유효성검사
-     if(!pass.test(passCheck.value)){
+    /* if(!pass.test(passCheck.value)){
           alert("4~12자 숫자,알파벳으로만 입력해주세요");
           passCheck.value= "";
           passCheck.focus();
                return false;
-     }
+     }*/
 
      //비밀번호 확인란 공백 확인
      if(passCheckch.value == ""){

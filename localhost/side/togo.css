@@ -217,3 +217,31 @@ body, html {
 .rigt_web img{
     border: solid 1px rgb(218, 213, 213);
 }
+
+.inside_images {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    gap: 2%;
+}
+
+.inside_images a {
+    text-decoration: none;
+}
+
+.inside_images img {
+    width: 100%;
+    display: flex;
+    max-width: 400px;
+    border: 1px solid rgb(218, 213, 213);
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+}
+
+.inside_images img:hover {
+    transform: scale(1.1);
+}
+
+
+
+
