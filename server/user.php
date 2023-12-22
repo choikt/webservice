@@ -79,7 +79,7 @@
     function mysqli_connection(){
         $server = "localhost";
         $user = "root";
-        $db_password = "kau1234!";
+        $db_password = "";
         $db_name = "talent_donation_project";
         $connection = mysqli_connect($server, $user, $db_password, $db_name);
         if (!$connection) {
@@ -91,11 +91,10 @@
     function insert_user($user_id, $passwd, $name, $phone_number, $salt, $authority){
         $connection = mysqli_connection();
         if($connection){
-            $sql = "INSERT INTO User VALUES ('$user_id', '$passwd', '$name', '$salt', '$phone_number', '$authority');";
-            if (mysqli_query($connection, $sql)) {
-            } else {
-                echo "유저 추가 실패".mysqli_error($connection);
-            }
+            $stmt = mysqli_prepare($connection, "INSERT INTO User VALUES(?, ?, ?, ?, ?, ? )");
+            mysqli_stmt_bind_param($stmt, "ssssss", $user_id, $passwd, $name, $salt, $phone_number, $authority);
+            mysqli_stmt_execute($stmt);
+            mysqli_stmt_close($stmt);
             mysqli_close($connection);
         }
         
@@ -104,8 +103,11 @@
     function id_check($user_id){
         $connection = mysqli_connection();
         if($connection){
-            $sql = "SELECT * FROM User WHERE user_id = \"$user_id\"";
-            $result = mysqli_query($connection, $sql);
+            $stmt = mysqli_prepare($connection, "SELECT * FROM User WHERE user_id = ?");
+            mysqli_stmt_bind_param($stmt, "s", $user_id);
+            mysqli_stmt_execute($stmt);
+            $result = mysqli_stmt_get_result($stmt);
+            mysqli_stmt_close($stmt);
             mysqli_close($connection);
             return (mysqli_num_rows($result) > 0);
         }
@@ -114,9 +116,12 @@
     function get_hashed_passwd($user_id){
         $connection = mysqli_connection();
         if($connection){
-            $sql = "SELECT passwd FROM User WHERE user_id = \"$user_id\"";
-            $result = mysqli_query($connection, $sql);
+            $stmt = mysqli_prepare($connection, "SELECT passwd FROM User WHERE user_id = ?");
+            mysqli_stmt_bind_param($stmt, "s", $user_id);
+            mysqli_stmt_execute($stmt);
+            $result = mysqli_stmt_get_result($stmt);
             $row = mysqli_fetch_assoc($result);
+            mysqli_stmt_close($stmt);
             mysqli_close($connection);
             return $row["passwd"];
         }
@@ -125,9 +130,12 @@
     function get_salt($user_id){
         $connection = mysqli_connection();
         if($connection){
-            $sql = "SELECT salt FROM User WHERE user_id = \"$user_id\"";
-            $result = mysqli_query($connection, $sql);
+            $stmt = mysqli_prepare($connection, "SELECT salt FROM User WHERE user_id = ?");
+            mysqli_stmt_bind_param($stmt, "s", $user_id);
+            mysqli_stmt_execute($stmt);
+            $result = mysqli_stmt_get_result($stmt);
             $row = mysqli_fetch_assoc($result);
+            mysqli_stmt_close($stmt);
             mysqli_close($connection);
             return $row["salt"];
         }
@@ -136,9 +144,12 @@
     function get_name($user_id){
         $connection = mysqli_connection();
         if($connection){
-            $sql = "SELECT name FROM User WHERE user_id = \"$user_id\"";
-            $result = mysqli_query($connection, $sql);
+            $stmt = mysqli_prepare($connection, "SELECT name FROM User WHERE user_id = ?");
+            mysqli_stmt_bind_param($stmt, "s", $user_id);
+            mysqli_stmt_execute($stmt);
+            $result = mysqli_stmt_get_result($stmt);
             $row = mysqli_fetch_assoc($result);
+            mysqli_stmt_close($stmt);
             mysqli_close($connection);
             return $row["name"];
         }
@@ -147,9 +158,12 @@
     function get_phone_number($user_id){
         $connection = mysqli_connection();
         if($connection){
-            $sql = "SELECT phone_number FROM User WHERE user_id = \"$user_id\"";
-            $result = mysqli_query($connection, $sql);
+            $stmt = mysqli_prepare($connection, "SELECT phone_number FROM User WHERE user_id = ?");
+            mysqli_stmt_bind_param($stmt, "s", $user_id);
+            mysqli_stmt_execute($stmt);
+            $result = mysqli_stmt_get_result($stmt);
             $row = mysqli_fetch_assoc($result);
+            mysqli_stmt_close($stmt);
             mysqli_close($connection);
             return $row["phone_number"];
         }
@@ -158,9 +172,12 @@
     function get_authority($user_id){
         $connection = mysqli_connection();
         if($connection){
-            $sql = "SELECT authority FROM User WHERE user_id = \"$user_id\"";
-            $result = mysqli_query($connection, $sql);
+            $stmt = mysqli_prepare($connection, "SELECT authority FROM User WHERE user_id = ?");
+            mysqli_stmt_bind_param($stmt, "s", $user_id);
+            mysqli_stmt_execute($stmt);
+            $result = mysqli_stmt_get_result($stmt);
             $row = mysqli_fetch_assoc($result);
+            mysqli_stmt_close($stmt);
             mysqli_close($connection);
             return $row["authority"];
         }

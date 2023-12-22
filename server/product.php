@@ -6,7 +6,7 @@
     $path_info = $_SERVER["REQUEST_URI"];
 
     header("Access-Control-Allow-Origin: *");
-    header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
+    header("Access-Control-Allow-Methods: GET, POST, PATCH, OPTIONS");
     header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
 
     // 상품 조회
@@ -37,7 +37,7 @@
             if($json_data !== null){
                 $price = $json_data["price"];
                 $gram = $json_data["gram"];
-                $sale = $json_data["sale"];
+                $sale = $json_data["sale"];               
                 change_product($product_id, $price, $gram, $sale);
             }
 
@@ -50,7 +50,7 @@
     function mysqli_connection(){
         $server = "localhost";
         $user = "root";
-        $db_password = "kau1234!";
+        $db_password = "";
         $db_name = "talent_donation_project";
         $connection = mysqli_connect($server, $user, $db_password, $db_name);
         if (!$connection) {
@@ -65,12 +65,15 @@
         $connection = mysqli_connection();
         $data = array();
         if($connection){
-            $sql = "SELECT * FROM Product WHERE product_id = $id";
-            $result = mysqli_query($connection, $sql);
+            $stmt = mysqli_prepare($connection, "SELECT * FROM Product WHERE product_id = ?");
+            mysqli_stmt_bind_param($stmt, "i", $id);
+            mysqli_stmt_execute($stmt);
+            $result = mysqli_stmt_get_result($stmt);
             if (mysqli_num_rows($result) > 0) {
                 $data = mysqli_fetch_assoc($result);
             }
         }
+        mysqli_stmt_close($stmt);
         mysqli_close($connection);
         return $data;
     }
@@ -80,14 +83,16 @@
         $connection = mysqli_connection();
         $data = array();
         if($connection){
-            $sql = "SELECT * FROM Product";
-            $result = mysqli_query($connection, $sql);
+            $stmt = mysqli_prepare($connection, "SELECT * FROM Product");
+            mysqli_stmt_execute($stmt);
+            $result = mysqli_stmt_get_result($stmt);
             if (mysqli_num_rows($result) > 0) {
                 while ($row = mysqli_fetch_assoc($result)) {
                     $data[] = $row;
                 }         
             }
         }
+        mysqli_stmt_close($stmt);
         mysqli_close($connection);
         return $data;
     }
@@ -97,9 +102,12 @@
         $connection = mysqli_connection();
         $data = array();
         if($connection){
-            $sql = "UPDATE Product SET price = $price, gram = \"$gram\", sale = $sale WHERE product_id = $product_id";
-            $result = mysqli_query($connection, $sql);
+            $stmt = mysqli_prepare($connection, "UPDATE Product SET price = ?, gram = ?, sale = ? WHERE product_id = ?");
+            mysqli_stmt_bind_param($stmt, "isii", $price, $gram, $sale, $product_id);
+            mysqli_stmt_execute($stmt);
+            $result = mysqli_stmt_get_result($stmt);
         }
+        mysqli_stmt_close($stmt);
         mysqli_close($connection);
         return $data;
     }

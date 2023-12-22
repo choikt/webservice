@@ -68,7 +68,7 @@
     function mysqli_connection(){
         $server = "localhost";
         $user = "root";
-        $db_password = "kau1234!";
+        $db_password = "";
         $db_name = "talent_donation_project";
         $connection = mysqli_connect($server, $user, $db_password, $db_name);
         if (!$connection) {
@@ -82,8 +82,11 @@
     function user_id_check($user_id){
         $connection = mysqli_connection();
         if($connection){
-            $sql = "SELECT * FROM User WHERE user_id = \"$user_id\"";
-            $result = mysqli_query($connection, $sql);
+            $stmt = mysqli_prepare($connection, "SELECT * FROM User WHERE user_id = ?");
+            mysqli_stmt_bind_param($stmt, "s", $user_id);
+            mysqli_stmt_execute($stmt);
+            $result = mysqli_stmt_get_result($stmt);
+            mysqli_stmt_close($stmt);
             mysqli_close($connection);
             return (mysqli_num_rows($result) > 0);
         }
@@ -93,8 +96,11 @@
     function product_id_check($product_id){
         $connection = mysqli_connection();
         if($connection){
-            $sql = "SELECT * FROM Product WHERE product_id = \"$product_id\"";
-            $result = mysqli_query($connection, $sql);
+            $stmt = mysqli_prepare($connection, "SELECT * FROM Product WHERE product_id = ?");
+            mysqli_stmt_bind_param($stmt, "i", $product_id);
+            mysqli_stmt_execute($stmt);
+            $result = mysqli_stmt_get_result($stmt);
+            mysqli_stmt_close($stmt);
             mysqli_close($connection);
             return (mysqli_num_rows($result) > 0);
         }
@@ -104,14 +110,13 @@
     function create_reservation($user_id, $product_id, $quantity, $time){
         $connection = mysqli_connection();
         if($connection){
-            $sql = "INSERT INTO Reservation(user_id, product_id, quantity, status, time) VALUES('$user_id', '$product_id', '$quantity', '예약 대기', '$time');";
-            if (mysqli_query($connection, $sql)) {
-                mysqli_close($connection);
-                return true;
-            } else {
-                mysqli_close($connection);
-                return false;
-            }
+            $stmt = mysqli_prepare($connection, "INSERT INTO Reservation(user_id, product_id, quantity, status, time) VALUES(?, ?, ?, ?, ?)");
+            $status = "예약 대기";
+            mysqli_stmt_bind_param($stmt, "siiss", $user_id, $product_id, $quantity, $status, $time);
+            mysqli_stmt_execute($stmt);
+            mysqli_stmt_close($stmt);
+            mysqli_close($connection);
+            return true;
         }
     }
 
@@ -120,16 +125,19 @@
         $connection = mysqli_connection();
         $data = array();
         if($connection){
-            $sql = "SELECT R.reservation_id, U.name, P.product_name, R.quantity, P.price, R.time
-                    FROM Reservation R, User U, Product P 
-                    WHERE R.user_id =  U.user_id and P.product_id = R.product_id and R.user_id = \"$user_id\";";
-            $result = mysqli_query($connection, $sql);
+            $stmt = mysqli_prepare($connection, "SELECT R.reservation_id, U.name, P.product_name, P.product_id, R.quantity, P.price, R.time, R.status
+                                                 FROM Reservation R, User U, Product P 
+                                                 WHERE R.user_id =  U.user_id and P.product_id = R.product_id and R.user_id = ?");
+            mysqli_stmt_bind_param($stmt, "s", $user_id);
+            mysqli_stmt_execute($stmt);
+            $result = mysqli_stmt_get_result($stmt);
             if (mysqli_num_rows($result) > 0) {
                 while ($row = mysqli_fetch_assoc($result)) {
                     $data[] = $row;
                 }    
             }
         }
+        mysqli_stmt_close($stmt);
         mysqli_close($connection);
         return $data;
     }
@@ -139,16 +147,18 @@
         $connection = mysqli_connection();
         $data = array();
         if($connection){
-            $sql = "SELECT R.reservation_id, U.name, P.product_name, R.quantity, P.price, R.time
-                    FROM Reservation R, User U, Product P 
-                    WHERE R.user_id =  U.user_id and P.product_id = R.product_id";
-            $result = mysqli_query($connection, $sql);
+            $stmt = mysqli_prepare($connection, "SELECT R.reservation_id, U.name, P.product_name, P.product_id, R.quantity, P.price, R.time, R.status
+                                                 FROM Reservation R, User U, Product P 
+                                                 WHERE R.user_id =  U.user_id and P.product_id = R.product_id");
+            mysqli_stmt_execute($stmt);
+            $result = mysqli_stmt_get_result($stmt);
             if (mysqli_num_rows($result) > 0) {
                 while ($row = mysqli_fetch_assoc($result)) {
                     $data[] = $row;
                 }      
             }
         }
+        mysqli_stmt_close($stmt);
         mysqli_close($connection);
         return $data;
     }
@@ -157,8 +167,11 @@
     function change_reservation_status($reservation_id, $status){
         $connection = mysqli_connection();
         if($connection){
-            $sql = "UPDATE Reservation SET status = \"$status\" WHERE reservation_id = $reservation_id";
-            $result = mysqli_query($connection, $sql);
+            $stmt = mysqli_prepare($connection, "UPDATE Reservation SET status = ? WHERE reservation_id = ?");
+            mysqli_stmt_bind_param($stmt, "si", $status, $reservation_id);
+            mysqli_stmt_execute($stmt);
+            $result = mysqli_stmt_get_result($stmt);
+            mysqli_stmt_close($stmt);
             mysqli_close($connection);
         }
     }
